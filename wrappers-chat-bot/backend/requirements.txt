@@ -1,0 +1,6 @@
+#Install the following dependencies using pip:
+
+fastapi
+uvicorn
+scikit-learn
+numpy
