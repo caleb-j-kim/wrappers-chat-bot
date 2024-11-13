@@ -19,5 +19,6 @@
 
 1. cd wrappers-chat-bot-temp
 2. cd backend
-3. npm run start (or use uvicorn main:app).
-4. Press Ctrl + C to end the chatbot in the terminal.
+3. npm run start (for front end).
+4. uvicorn main:app (open a second terminal, repeat steps 1 & 2 before typing the command in, for back end).
+5. Press Ctrl + C to end the chatbot in the terminal.

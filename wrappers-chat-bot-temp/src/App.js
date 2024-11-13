@@ -8,6 +8,7 @@ function App() {
   ]);
   const [useWrapper, setUseWrapper] = useState(false);
   const [file, setFile] = useState(null);
+  const [uploadResponse, setUploadResponse] = useState('');
 
   // Reference for the hidden file input
   const fileInputRef = useRef(null);
@@ -40,63 +41,43 @@ function App() {
   // Handle file upload
   const handleFileUpload = async (selectedFile) => {
     if (!selectedFile) {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'bot', text: 'Please select a file to upload.' }
-      ]);
+      setUploadResponse('Please select a file to upload.');
       return;
     }
-
+  
     // Check if filename is valid
     if (!isValidFilename(selectedFile.name)) {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'bot', text: 'Error: Incorrect file uploaded. Please upload a valid ENCS Degree Plan file.' }
-      ]);
+      setUploadResponse('Error: Incorrect file uploaded. Please upload a valid ENCS Degree Plan file.');
       return;
     }
-
+  
     const formData = new FormData();
     formData.append('file', selectedFile);
-
+  
     try {
       const response = await fetch('http://127.0.0.1:8000/upload/', {
         method: 'POST',
         body: formData,
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
-        // Display the confirmation message as a bot message
+        setUploadResponse(data.confirmation || 'File uploaded successfully!');
+        
+        // Add the response from the backend as a message in the chatbot interface
         setMessages((prevMessages) => [
           ...prevMessages,
-          { sender: 'bot', text: data.confirmation || 'File uploaded successfully!' }
+          { sender: 'bot', text: data.response },
         ]);
-
-        // Display recommended classes if available
-        if (data.recommended_classes && data.recommended_classes.length > 0) {
-          const recommendedText = `Recommended classes: ${data.recommended_classes.join(', ')}`;
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            { sender: 'bot', text: recommendedText }
-          ]);
-        }
       } else {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { sender: 'bot', text: 'Error: Incorrect file uploaded.' }
-        ]);
+        setUploadResponse(`Error: ${data.detail}`); // Display backend error message
       }
     } catch (error) {
-      console.error('Error:', error);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'bot', text: 'Error: Could not upload file.' }
-      ]);
+      console.error('Error during file upload:', error);
+      setUploadResponse('Error: Could not upload file.');
     }
   };
-
   // Function to handle sending a message
   const handleSend = async () => {
     if (message.trim()) {
