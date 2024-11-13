@@ -1,8 +1,8 @@
 #This project will require you to use the Visual Studio Terminal:
 
-1. On the top left corner, click on "Terminal"
+1. On the top left corner, click on "Terminal".
 2. Click on "New Terminal".
-3. Make sure the terminal is in the "wrappers-chat-bot/backend" directory.
+3. Make sure the terminal is in the "wrappers-chat-bot-temp/" directory.
 
 #Install the following dependencies using pip:
 
@@ -10,7 +10,14 @@
 2. uvicorn
 3. scikit-learn
 4. numpy
+5. pandas
+6. networkx
+7. python-multipart
+8. openpyxl
 
 #To start the chatbot, run the following command in the terminal:
 
-npm run start
+1. cd wrappers-chat-bot-temp
+2. cd backend
+3. npm run start (or use uvicorn main:app).
+4. Press Ctrl + C to end the chatbot in the terminal.

@@ -16,13 +16,12 @@ body {
   padding: 20px;
 }
 
-/* Logo styling */
 .header-image {
   width: 80px;
   margin-bottom: 10px;
 }
 
-/* Chat message container styling */
+/* Messages container styling */
 .messages-container {
   width: 100%;
   max-width: 600px;
@@ -42,29 +41,26 @@ body {
 .message {
   max-width: 80%;
   padding: 10px 15px;
-  background-color: #3b3b3b;
-  border-radius: 20px;
-  align-self: flex-start;
-  color: white;
+  border-radius: 15px;
   font-size: 14px;
   line-height: 1.4;
-  animation: fadeIn 0.5s ease-out forwards;
 }
 
-.message.animate-message {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: slideUp 0.3s ease forwards;
+/* Bot message styling */
+.bot-message {
+  align-self: flex-start;
+  background-color: #444;
+  color: white;
 }
 
-/* Sender (user) messages align to the right */
-.message:last-child {
+/* User message styling */
+.user-message {
   align-self: flex-end;
   background-color: #007bff;
   color: white;
 }
 
-/* Text area and send button styling */
+/* Chat input area styling */
 .chat-container {
   width: 100%;
   max-width: 600px;
@@ -75,8 +71,8 @@ body {
 
 .chat-input {
   flex-grow: 1;
-  height: 50px; /* Reduced from 60px to 50px */
-  padding: 10px 15px; /* Adjusted padding for better alignment */
+  height: 20px;
+  padding: 10px;
   font-size: 16px;
   background-color: #2e2e2e;
   color: white;
@@ -87,38 +83,38 @@ body {
   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.send-button {
-  padding: 10px 20px; /* Adjusted padding to align with the text box */
-  font-size: 16px;
+.send-button, .file-upload-button {
+  width: 60px;
+  height: 40px;
+  border: none;
   background-color: #007bff;
   color: white;
-  border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .send-button:hover {
   background-color: #0056b3;
 }
 
-/* Animations */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.file-upload-button {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* Model selector styling */
+.model-selector {
+  margin-top: 10px;
+  color: white;
+  font-size: 14px;
+}
+
+input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  z-index: -1;
 }
