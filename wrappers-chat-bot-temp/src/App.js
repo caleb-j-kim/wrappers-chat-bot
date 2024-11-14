@@ -82,7 +82,7 @@ function App() {
   const handleSend = async () => {
     if (message.trim()) {
       setMessages([...messages, { sender: 'user', text: message }]);
-
+  
       try {
         const response = await fetch("http://127.0.0.1:8000/chat/", {
           method: "POST",
@@ -91,7 +91,7 @@ function App() {
           },
           body: JSON.stringify({ text: message, use_wrapper: useWrapper }),
         });
-
+  
         const data = await response.json();
         setMessages((prevMessages) => [
           ...prevMessages,
@@ -100,10 +100,10 @@ function App() {
       } catch (error) {
         console.error("Error:", error);
       }
-
+  
       setMessage('');
     }
-  };
+  };  
 
   return (
     <div className="App">

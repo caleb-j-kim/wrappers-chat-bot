@@ -4,7 +4,7 @@
 2. Click on "New Terminal".
 3. Make sure the terminal is in the "wrappers-chat-bot-temp/" directory.
 
-#Install the following dependencies using pip:
+#Install the following dependencies using pip (inside of cd chat-bot-temp):
 
 1. fastapi
 2. uvicorn
@@ -20,5 +20,5 @@
 1. cd wrappers-chat-bot-temp
 2. cd backend
 3. npm run start (for front end).
-4. uvicorn main:app (open a second terminal, repeat steps 1 & 2 before typing the command in, for back end).
+4. uvicorn main:app or python -m uvicorn main:app (open a second terminal, repeat steps 1 & 2 before typing the command in, for back end).
 5. Press Ctrl + C to end the chatbot in the terminal.
